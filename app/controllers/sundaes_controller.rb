@@ -21,7 +21,16 @@ class SundaesController < ApplicationController
   end 
 
   def update
+    @sundae = Sundae.find(params[:id])
+    @sundae.increment!(:like_count, 1)
+    @sundae.decreaseCounter(:like_count)
+    render json: @sundae
   end
+
+  
+
+
+  
 
   private
 
