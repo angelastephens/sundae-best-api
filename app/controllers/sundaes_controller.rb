@@ -23,18 +23,22 @@ class SundaesController < ApplicationController
   def update
     @sundae = Sundae.find(params[:id])
     @sundae.increment!(:like_count, 1)
-    @sundae.decreaseCounter(:like_count)
     render json: @sundae
   end
 
+   def boo_update
+    @sundae = Sundae.find(params[:id])
+    @sundae.increment!(:boo_vote)
+    render json: @sundae
+   end
+
+ 
   
 
-
-  
 
   private
 
   def sundae_params
-    params.require(:sundae).permit(:name, :scoops, :ice_cream_flavors, :toppings, :like_count)
+    params.require(:sundae).permit(:name, :scoops, :ice_cream_flavors, :toppings, :like_count, :boo_vote)
   end
 end
